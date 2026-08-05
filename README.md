@@ -16,19 +16,27 @@ git clone https://github.com/young-ai-courses/ai-workflow-workshop.git
 cd ai-workflow-workshop
 ```
 
-然後在這個資料夾裡打開 **Claude Code** 或 **Codex**，跟它說：
+然後在這個資料夾裡打開 **Claude Code** 或 **Codex**，直接跟它講話就好。
+這個資料夾裡住著一位助教，它知道那天課上講了什麼。
+
+**三句話，看你現在需要哪一種：**
+
+> 幫我複習
+
+上課聽懂、回家忘光是正常的。它會把整條線重新串一遍，一次講一段，
+你也可以只挑忘記的部分聽。
 
 > 開始教我
 
 它會問你一件你覺得浪費生命的重複工作，然後**一次一步**帶你把這個 repo
 改造成解決那件事的自動化。不會一次丟一堆步驟給你。
 
-做完之後（或你自己摸完之後），跟它說：
-
 > 檢查一下我做好了沒
 
 它會跑一輪機器檢查，告訴你哪裡還沒好 —— 包括那些**畫面上看起來都對、
 但實際上永遠不會跑**的地方。
+
+（不知道要說哪一句，就打「助教」，它會問你。）
 
 ---
 
@@ -59,6 +67,8 @@ python3 scripts/check_setup.py                # 隨時問「我做好了沒」
 
 ```
 ├── CLAUDE.md / AGENTS.md              兩種 AI 的入口，內容一樣
+├── .claude/agents/
+│   └── teaching-assistant.md          助教本人（帶著整堂課的內容）
 ├── .claude/skills/
 │   ├── workshop-guide/SKILL.md        手把手教學（一次一步）
 │   └── blind-spot-check/SKILL.md      盲點檢查（要證據不要形容詞）

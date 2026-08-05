@@ -24,8 +24,17 @@ git clone https://github.com/你的帳號/你取的名字.git
 cd 你取的名字
 ```
 
-在這個資料夾裡打開 **Claude Code** 或 **Codex**，直接跟它講話就好。
-這個資料夾裡住著一位助教，它知道那天課上講了什麼。
+### 然後找助教
+
+這包東西裡附了一位助教，它知道那天課上講了什麼。看你手上有什麼，走哪一條都行：
+
+| 你手上有 | 怎麼找它 |
+|---|---|
+| **只有免費的 ChatGPT / Claude 網頁版 / Gemini**（多數人）| 打開 **[貼上版助教.md](貼上版助教.md)**，按複製鈕，貼進去送出 |
+| 有 **Claude Code** 或 **Codex** | 在這個資料夾裡打開，直接跟它講話 |
+
+兩邊**內容一模一樣**。差別只在付費版看得到你的檔案、能直接幫你跑檢查；
+免費版會請你自己看一眼再告訴它。
 
 **三句話，看你現在需要哪一種：**
 
@@ -74,7 +83,8 @@ python3 scripts/check_setup.py                # 隨時問「我做好了沒」
 ## 這裡面有什麼
 
 ```
-├── CLAUDE.md / AGENTS.md              兩種 AI 的入口，內容一樣
+├── 貼上版助教.md                      免費 AI 用這份（一鍵複製貼上）
+├── CLAUDE.md / AGENTS.md              Claude Code / Codex 的入口
 ├── .claude/agents/
 │   └── teaching-assistant.md          助教本人（帶著整堂課的內容）
 ├── .claude/skills/

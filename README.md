@@ -11,12 +11,20 @@
 
 ## 三分鐘開始
 
+**第一步在網頁上做**：按這個 repo 右上角的綠色 **Use this template** →
+Create a new repository → 取個名字 → 建立。
+
+> 為什麼不是 Fork：fork 來的 repo，GitHub 預設**不會**跑排程，
+> 而且不會告訴你。用 template 建的就沒這個問題。
+
+然後把**你自己那個**抓下來：
+
 ```bash
-git clone https://github.com/young-ai-courses/ai-workflow-workshop.git
-cd ai-workflow-workshop
+git clone https://github.com/你的帳號/你取的名字.git
+cd 你取的名字
 ```
 
-然後在這個資料夾裡打開 **Claude Code** 或 **Codex**，直接跟它講話就好。
+在這個資料夾裡打開 **Claude Code** 或 **Codex**，直接跟它講話就好。
 這個資料夾裡住著一位助教，它知道那天課上講了什麼。
 
 **三句話，看你現在需要哪一種：**

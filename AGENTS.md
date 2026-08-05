@@ -33,18 +33,20 @@
 | Agent | 什麼時候用 |
 |---|---|
 | `teaching-assistant` | **預設就用它。** 學員說「複習」「上課講什麼」「我忘了」「帶我做」「檢查一下」「助教」，或任何看起來剛打開這個資料夾的第一句話 |
+| `student-profiler` | **還沒有 `CLAUDE.local.md` 的時候先跑一次。** 八題問答摸清他的起點，寫成學習檔案給助教參考。他說「診斷我」「先了解我」「重新診斷」也是 |
 
-它在 `.claude/agents/teaching-assistant.md`。你（Codex 或任何讀 AGENTS.md 的
-agent）沒有自動載入機制，所以請**直接把那份檔案整份讀進來當作你的角色設定** ——
-裡面帶著整堂課的內容，可以重講、可以帶做、可以驗收。
-不確定要做什麼的時候，就照它走。
+兩位都在 `.claude/agents/`。你（Codex 或任何讀 AGENTS.md 的 agent）沒有自動載入
+機制，所以**用到哪一位就把那份檔案整份讀進來當作你的角色設定**。
+`teaching-assistant` 帶著整堂課的內容；`student-profiler` 只做入學診斷，問完寫檔就交棒。
+不確定要做什麼的時候，就照 `teaching-assistant` 走。
 
 ## Skill
 
 | Skill | 學員會說 | 它做什麼 |
 |---|---|---|
 | `workshop-guide` | 「開始教我」「帶我做」「怎麼開始」 | 七步把這個 repo 改造成他自己的自動化，一次一步 |
-| `blind-spot-check` | 「檢查一下」「我做好了嗎」「好了沒」 | 跑七項機器驗，用證據回答，不接受「我覺得好了」 |
+| `blind-spot-check` | 「檢查一下」「我做好了嗎」「好了沒」 | 跑八項機器驗，用證據回答，不接受「我覺得好了」 |
+| `student-intake` | 「診斷我」「先了解我」「我程度到哪」 | 八題問答 → 寫成 `CLAUDE.local.md` |
 
 檔案在 `.claude/skills/<名字>/SKILL.md`。路徑裡有 `.claude` 只是因為 Claude Code
 會自動掃那個目錄，對你來說它就是一般的 markdown —— **用到的時候整份讀進來就好。**
@@ -53,10 +55,16 @@ agent）沒有自動載入機制，所以請**直接把那份檔案整份讀進�
 
 | 指令 | 做什麼 |
 |---|---|
-| `python3 scripts/check_setup.py` | 七項檢查，回答「到底做好了沒」。查不到的標 ❔，不會假裝是綠的 |
+| `python3 scripts/check_setup.py` | 八項檢查，回答「到底做好了沒」。查不到的標 ❔，不會假裝是綠的 |
 | `python3 -m unittest discover -s tests -v` | 跑回測鎖，確認沒改壞 |
 
 ---
+
+# 先看他的學習檔案
+
+專案根目錄如果有 **`CLAUDE.local.md`**，那是他的入學診斷結果 ——
+**開場前整份讀完**，照裡面「跟我講話請這樣」調整你的講法。
+沒有的話，先問他要不要花兩分鐘做一次（`student-profiler`），他說不用就算了，別催。
 
 # 三條規矩（比什麼都重要）
 

@@ -20,6 +20,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# 講師的原始 repo。學員若直接 clone 它（而不是先按 Use this template），
+# 底下每一項跟 GitHub 有關的檢查都會去查「講師的 repo」——
+# 答案看起來很正常，但查的根本不是他自己的東西。
+INSTRUCTOR_REPO = "young-ai-courses/ai-workflow-workshop"
+
 PASS, FAIL, UNKNOWN = "PASS", "FAIL", "UNKNOWN"
 MARK = {PASS: "✅", FAIL: "❌", UNKNOWN: "❔"}
 
@@ -139,6 +144,21 @@ NO_GH = ("裝了 gh 並登入才驗得到：brew install gh && gh auth login。"
          "不想裝也可以自己去 GitHub 頁面上看")
 
 
+def check_is_own_repo(slug: str | None) -> Result:
+    name = "你在自己的 repo 裡（不是講師那個）"
+    if not slug:
+        return Result(name, UNKNOWN, "這個資料夾沒有連到 GitHub 上的任何 repo",
+                      "如果你只是把檔案下載下來，還沒有自己的 repo —— "
+                      "去 github.com/" + INSTRUCTOR_REPO + " 按 Use this template 建一個")
+    if slug.lower() == INSTRUCTOR_REPO.lower():
+        return Result(name, FAIL, f"這裡連到的是講師的 repo（{slug}）",
+                      "你直接 clone 了講師的 repo，所以你沒有寫入權限，"
+                      "推上去會失敗，下面幾項查到的也都是講師的狀態、不是你的。"
+                      "\n     去 github.com/" + INSTRUCTOR_REPO +
+                      " 按 Use this template 建一個自己的，再從那個 clone")
+    return Result(name, PASS, slug)
+
+
 def check_actions_enabled(slug: str | None) -> Result:
     name = "Actions 已啟用"
     if not slug:
@@ -213,6 +233,7 @@ def main() -> int:
     if not args.local:
         slug = repo_slug()
         results += [
+            check_is_own_repo(slug),
             check_actions_enabled(slug),
             check_secret_set(slug),
             check_workflow_ran(slug),

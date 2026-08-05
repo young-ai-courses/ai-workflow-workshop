@@ -5,3 +5,6 @@ __pycache__/
 
 .env
 *.env
+
+# 你的學習檔案（入學診斷結果，屬於你自己）
+CLAUDE.local.md
